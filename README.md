@@ -6,7 +6,7 @@ Each case study targets a particular important topic in binary security. For an 
 
 | Topic        | Case Study                |
 | :---: | :---: |
-| Exploitation | [$E^2VA$ Vulnerable Module](https://github.com/fkie-cad/TOP-Android/tree/main/case_study_exploitation)|
+| Exploitation | [E^2VA Vulnerable Module](https://github.com/fkie-cad/TOP-Android/tree/main/case_study_exploitation)|
 | Obfuscation  | [Self - Exploitation](https://github.com/fkie-cad/TOP-Android/tree/main/case_study_obfuscation)|
 
 ## Test Environment
@@ -17,7 +17,7 @@ Accordingly, all `.apk` files have been built for that test device. Also, `.vdex
 
 ## Exploitation via TOP
 
-The case study on exploitation using TOP is based on the [`PoCMterpModule` in $E^2VA$](https://github.com/fkie-cad/eeva/blob/main/damnvulnerableapp/app/src/main/java/com/damnvulnerableapp/vulnerable/modules/PoCMterpModule.java). `PoCMterpModule` provides a *Write - What - Where* and *Read - What - Where* condition and thus fulfills the majority of assumptions made by TOP.
+The case study on exploitation using TOP is based on [`PoCMterpModule`](https://github.com/fkie-cad/eeva/blob/main/damnvulnerableapp/app/src/main/java/com/damnvulnerableapp/vulnerable/modules/PoCMterpModule.java) in $E^2VA$. `PoCMterpModule` provides a *Write - What - Where* and *Read - What - Where* condition and thus fulfills the majority of assumptions made by TOP.
 
 Goal of this case study is to show that chaining TOP gadgets is possible. Therefore, all gadgets chained are *NOP gadgets*, i.e. of the form `throw v0`. More complex computations like setting up a socket connection should be possible, because $E^2VA$ uses network `Socket`s. However, finding a target method with reachable, suitable gadgets is an involved and tedious process.
 
