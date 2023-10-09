@@ -26,7 +26,7 @@ public class Test {
 }
 ```
 
-However, the app displays `flag` (might be an interesting reversing CTF challenge). Obviously, this change comes from `setup`, which hijacks `Test::getText` through manipulation of its corresponding `ArtMethod`. `Test::getText` returns a `char[]` for reasons of simplification. As `generate_table.py` can be adjusted to provide any dex bytecode program and its offsets, one may create arbitrary programs. Even conditional branching is possible by modifying the virtual program counter vreg (`v1` for this PoC).
+However, the app displays `flag` (might be an interesting reversing CTF challenge). Obviously, this change comes from `setup`, which hijacks `Test::getText` through manipulation of its corresponding `ArtMethod`. `Test::getText` returns a `char[]` for reasons of simplification. As `generate_table.py` can be adjusted to provide any dex bytecode program and its offsets, one may create arbitrary programs.
 
 It may be important to call `move-exception vAA` before returning to actual Java code, because *TOP* keeps passing on the same exception object (through `v0` in this PoC), but never "claims" to handle it. We did **not** verify this, but the fact that the PoC did not crash when calling `move-exception` convinced us to keep it.
 
@@ -34,7 +34,7 @@ It may be important to call `move-exception vAA` before returning to actual Java
 
 Because we simply placed the random table in a header file (`table.h`) instead of outsourcing it into a file or generating the table at runtime, *Android Studio* may be overwhelmed and thus run slowly or crash. Similarily, It is not recommended to open `table.h` in e.g. your browser.
 
-There are two `.apk` files built in release mode and signed with a custom key for easy installation through `adb install <path to>/app-release.apk`.
+There are two `.apk` files built in release mode and signed with a custom key for easy installation through `adb install <path to>/app-release.apk`. The outermost [`app-release.apk`](https://github.com/fkie-cad/TOP-Android/blob/main/case_study_obfuscation/app-release.apk) is simply a convenience copy of the one located in the code project.
 
 ## Conclusion
 
